@@ -1,12 +1,12 @@
-import { DUMMY_NEWS } from "@/dummy-news";
+import { getNewsItem } from "@/lib/news";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-const NewsDetail = ({ params }) => {
+const NewsDetail = async({ params }) => {
   //getting url path via params.fileName
   const newsSlug = params.slug;
-  const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === newsSlug);
+  const newsItem =await getNewsItem(newsSlug)
 
   if (!newsItem) {
     // special function which calls notfound page content
