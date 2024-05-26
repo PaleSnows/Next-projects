@@ -109,6 +109,7 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+data.db
 
 # yarn v2
 .yarn/cache
@@ -116,4 +117,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
