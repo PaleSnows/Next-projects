@@ -1,6 +1,7 @@
 "use server";
 import { uploadImage } from "@/lib/cloudinary";
-import { storePost } from "@/lib/posts";
+import { storePost, updatePostLikeStatus } from "@/lib/posts";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 // createPost function now only executes on the server
@@ -35,5 +36,11 @@ export async function createPost(prevState, formData) {
     userId: 1,
   });
   console.log(title, image, content);
+  revalidatePath("/",'layout')
   redirect("/feed");
+}
+
+export async function  tooglePostLikeStatus(postId){
+  await updatePostLikeStatus(postId,2)
+  revalidatePath("/",'layout')
 }
